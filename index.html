@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOps - Manage brand deals, invoices, and payments</title>
+    <style>
+        :root { 
+            --primary: #000; 
+            --secondary: #666; 
+            --bg: #fff; 
+            --gap: 2rem; 
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: var(--bg); color: var(--primary); line-height: 1.5; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+        .btn-join { background: #000; color: #fff; padding: 0.6rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .hero { text-align: center; padding: 8rem 0; background: radial-gradient(circle at top, #fafafa 0%, #fff 100%); }
+        h1 { font-size: 4.5rem; font-weight: 850; letter-spacing: -3px; line-height: 1; margin-bottom: 2rem; }
+        .subheading { color: var(--secondary); font-size: 1.4rem; max-width: 600px; margin: 0 auto 3.5rem; }
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; }
+        .btn { padding: 1.2rem 2.5rem; border-radius: 14px; text-decoration: none; font-weight: 600; transition: all 0.2s; border: 1.5px solid #000; }
+        .btn-black { background: #000; color: #fff; }
+        .btn-white { background: #fff; color: #000; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+        
+        .features { padding: 6rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .feature-card { padding: 2.5rem; border-radius: 24px; background: #fff; border: 1px solid #eee; transition: all 0.3s; }
+        .feature-card:hover { border-color: #000; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .feature-card p { color: var(--secondary); }
 
+        .faq { padding: 6rem 0; background: #fafafa; border-radius: 40px; margin-top: 4rem; }
+        .faq h2 { text-align: center; margin-bottom: 4rem; font-size: 3rem; letter-spacing: -1.5px; }
+        .faq-grid { max-width: 800px; margin: 0 auto; display: grid; gap: 1.5rem; }
+        .faq-item { background: #fff; padding: 2rem; border-radius: 20px; border: 1px solid #eee; }
+        .faq-item h3 { margin-bottom: 0.75rem; font-size: 1.2rem; letter-spacing: -0.3px; }
+        .faq-item p { color: var(--secondary); }
+
+        .newsletter { padding: 8rem 0; text-align: center; }
+        .newsletter-card { background: #000; color: #fff; padding: 5rem 2rem; border-radius: 32px; max-width: 900px; margin: 0 auto; }
+        .newsletter-card h2 { font-size: 2.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .form-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+        .newsletter-card input { padding: 1.2rem; border-radius: 14px; border: none; width: 100%; max-width: 350px; font-size: 1rem; }
+        .newsletter-card button { padding: 1.2rem 2.5rem; border-radius: 14px; border: none; background: #fff; color: #000; font-weight: 700; cursor: pointer; font-size: 1rem; transition: opacity 0.2s; }
+        .newsletter-card button:hover { opacity: 0.9; }
+
+        footer { padding: 6rem 0; text-align: center; color: var(--secondary); font-size: 1rem; border-top: 1px solid #eee; }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: #000; text-decoration: none; font-weight: 600; }
+        
+        @media (max-width: 768px) { 
+            h1 { font-size: 3rem; } 
+            .hero-btns { flex-direction: column; } 
+            .features { grid-template-columns: 1fr; }
+            .newsletter-card { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">CreatorOps</div>
+            <a href="#" class="btn-join">Join Beta</a>
+        </nav>
+    </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Manage brand deals,<br>invoices, and payments in<br>one place.</h1>
+            <p class="subheading">Built for professional creators. No more WhatsApp chaos or tracking payments in DMs.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn btn-black">I'm a Creator</a>
+                <a href="#" class="btn btn-white">I'm a Brand</a>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <section class="features">
+            <div class="feature-card">
+                <h3>Unclear Payments</h3>
+                <p>Track every rupee from inquiry to bank deposit without checking 5 different apps.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Invoice Chaos</h3>
+                <p>Generate professional, tax-compliant invoices in seconds and send them automatically.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Lost Contracts</h3>
+                <p>Keep all your brand agreements, terms, and campaign briefs in one secure vault.</p>
+            </div>
+        </section>
+    </div>
+    <section class="faq">
+        <div class="container">
+            <h2>Your Questions, Answered</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is it free for creators?</h3>
+                    <p>Yes, CreatorOps is completely free for individual creators to manage their business operations.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you take a cut from my deals?</h3>
+                    <p>No, we do not take any commission from your brand collaborations. We're a tool, not an agency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-card">
+                <h2>Stay in the loop</h2>
+                <p style="opacity: 0.8;">Join the waitlist to get early access and creator business tips.</p>
+                <form class="form-group">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit">Join Early Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>Built for Creators. Made with love.</p>
+            <p>Questions? Reach out at <a href="mailto:naved@creatorops.in">naved@creatorops.in</a></p>
+        </div>
+    </footer>
+</body>
+</html>
