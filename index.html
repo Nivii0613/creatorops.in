@@ -1,167 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CreatorOps - Manage brand deals, invoices, and payments</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CreatorOps — Manage brand deals, invoices, and payments</title>
+  <meta name="description" content="CreatorOps helps creators manage brand deals, invoices, contracts, and payments in one place." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #F1F5F9;
-      --secondary: #94A3B8;
-      --bg: #0A0A0F;
-      --surface: #13131A;
-      --surface2: #1C1C27;
-      --accent: #6366F1;
-      --accent-hover: #4F46E5;
-      --accent-light: rgba(99,102,241,0.12);
-      --border: rgba(255,255,255,0.07);
-      --gap: 2rem;
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #182244;
+      --text: #f3f7ff;
+      --muted: #a9b4d0;
+      --line: rgba(255,255,255,0.08);
+      --primary: #6ee7b7;
+      --primary-dark: #34d399;
+      --accent: #7c9cff;
+      --danger: #ff9e9e;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 20px;
+      --max: 1180px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--primary); line-height: 1.6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    /* NAV */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
-    .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; color: var(--primary); }
-    .logo span { color: var(--accent); }
-    .btn-join { background: var(--accent); color: #fff; padding: 0.65rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; box-shadow: 0 0 20px rgba(99,102,241,0.4); }
-    .btn-join:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(99,102,241,0.6); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(110,231,183,0.10), transparent 24%),
+        var(--bg);
+      color: var(--text);
+    }
 
-    /* HERO */
-    .hero { text-align: center; padding: 9rem 0 7rem; background: radial-gradient(ellipse at 50% -10%, rgba(99,102,241,0.15) 0%, transparent 65%); }
-    .hero-badge { display: inline-block; background: var(--accent-light); color: var(--accent); font-size: 0.78rem; font-weight: 700; padding: 0.35rem 1rem; border-radius: 100px; margin-bottom: 2rem; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(99,102,241,0.25); }
-    h1 { font-size: 4.2rem; font-weight: 900; letter-spacing: -3px; line-height: 1.05; margin-bottom: 1.5rem; color: var(--primary); }
-    h1 em { font-style: normal; color: var(--accent); }
-    .subheading { color: var(--secondary); font-size: 1.2rem; max-width: 540px; margin: 0 auto 3rem; font-weight: 400; }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn { padding: 1rem 2.2rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.2s; font-size: 1rem; }
-    .btn-primary { background: var(--accent); color: #fff; border: 1px solid rgba(99,102,241,0.5); box-shadow: 0 0 24px rgba(99,102,241,0.35); }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 40px rgba(99,102,241,0.5); }
-    .btn-ghost { background: var(--surface); color: var(--primary); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); background: var(--surface2); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    /* FEATURES */
-    .features { padding: 6rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .feature-card { padding: 2.5rem; border-radius: 20px; background: var(--surface); border: 1px solid var(--border); transition: all 0.3s; }
-    .feature-card:hover { border-color: rgba(99,102,241,0.4); box-shadow: 0 0 40px rgba(99,102,241,0.1); transform: translateY(-4px); }
-    .feature-icon { width: 48px; height: 48px; background: var(--accent-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.4rem; border: 1px solid rgba(99,102,241,0.2); }
-    .feature-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; letter-spacing: -0.3px; font-weight: 700; color: var(--primary); }
-    .feature-card p { color: var(--secondary); font-size: 0.95rem; line-height: 1.7; }
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
 
-    /* FAQ */
-    .faq { padding: 6rem 0; background: var(--surface); border-radius: 32px; margin: 0 0 4rem; border: 1px solid var(--border); }
-    .faq h2 { text-align: center; margin-bottom: 3.5rem; font-size: 2.8rem; letter-spacing: -1.5px; font-weight: 800; color: var(--primary); }
-    .faq-grid { max-width: 720px; margin: 0 auto; display: grid; gap: 1rem; padding: 0 2rem; }
-    .faq-item { background: var(--surface2); padding: 1.75rem 2rem; border-radius: 16px; border: 1px solid var(--border); }
-    .faq-item h3 { margin-bottom: 0.6rem; font-size: 1.1rem; letter-spacing: -0.2px; font-weight: 700; color: var(--primary); }
-    .faq-item p { color: var(--secondary); font-size: 0.95rem; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(11,16,32,0.75);
+      border-bottom: 1px solid var(--line);
+    }
 
-    /* NEWSLETTER */
-    .newsletter { padding: 4rem 0 8rem; text-align: center; }
-    .newsletter-card { background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%); padding: 5rem 2rem; border-radius: 28px; max-width: 860px; margin: 0 auto; border: 1px solid rgba(99,102,241,0.25); box-shadow: 0 0 80px rgba(99,102,241,0.1); }
-    .newsletter-card h2 { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -1px; font-weight: 800; color: var(--primary); }
-    .newsletter-card p { color: var(--secondary); font-size: 1.05rem; }
-    .form-group { display: flex; gap: 0.75rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
-    .newsletter-card input { padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; max-width: 320px; font-size: 1rem; background: var(--bg); color: var(--primary); outline: none; }
-    .newsletter-card input::placeholder { color: var(--secondary); }
-    .newsletter-card input:focus { border-color: rgba(99,102,241,0.5); box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
-    .newsletter-card button { padding: 1rem 2rem; border-radius: 12px; border: none; background: var(--accent); color: #fff; font-weight: 700; cursor: pointer; font-size: 1rem; transition: all 0.2s; box-shadow: 0 0 24px rgba(99,102,241,0.4); }
-    .newsletter-card button:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 40px rgba(99,102,241,0.55); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
 
-    /* FOOTER */
-    footer { padding: 4rem 0; text-align: center; color: var(--secondary); font-size: 0.9rem; border-top: 1px solid var(--border); }
-    .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; letter-spacing: -0.5px; }
-    .footer-logo span { color: var(--accent); }
-    footer p { margin-bottom: 0.5rem; }
-    footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
-    footer a:hover { opacity: 0.8; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
 
-    @media (max-width: 768px) {
-      h1 { font-size: 2.8rem; letter-spacing: -2px; }
-      .features { grid-template-columns: 1fr; }
-      .hero { padding: 6rem 0 4rem; }
-      .newsletter-card { padding: 3rem 1.5rem; }
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--primary-dark));
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: #08101e;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #071018;
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 60ch;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .mock-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .mock-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .deal-card, .stat, .mini-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .deal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .deal-title { font-weight: 700; }
+    .muted { color: var(--muted); }
+    .pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .paid { background: rgba(110,231,183,0.13); color: var(--primary); }
+    .pending { background: rgba(124,156,255,0.14); color: #b9c7ff; }
+    .review { background: rgba(255,158,158,0.14); color: #ffc2c2; }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-top: 6px;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .pain-grid, .features-grid, .faq-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pain-grid { grid-template-columns: repeat(3, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .faq-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--panel-2);
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(124,156,255,0.16);
+      color: #d7e0ff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .newsletter {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .form-wrap {
+      background: linear-gradient(180deg, rgba(124,156,255,0.10), rgba(110,231,183,0.06));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(8,12,24,0.55);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+    }
+
+    input::placeholder, textarea::placeholder { color: #8290b6; }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .faq-item h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+
+    .footer {
+      padding: 26px 0 50px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .newsletter,
+      .pain-grid,
+      .features-grid,
+      .faq-grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 740px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 48px; }
+      .hero-card { padding: 16px; }
+      h1 { max-width: none; }
+      .btn { width: 100%; }
+      .hero-actions { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav>
-      <div class="logo">Creator<span>Ops</span></div>
-      <a href="#newsletter" class="btn-join">Join Beta</a>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Now in Beta</div>
-      <h1>Manage brand deals,<br><em>invoices</em>, and payments<br>in one place.</h1>
-      <p class="subheading">Built for professional creators. No more WhatsApp chaos or tracking payments in DMs.</p>
-      <div class="hero-btns">
-        <a href="#newsletter" class="btn btn-primary">I'm a Creator</a>
-        <a href="#newsletter" class="btn btn-ghost">I'm a Brand</a>
-      </div>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <div class="logo">CO</div>
+        <div>CreatorOps</div>
+      </a>
+      <nav class="nav-links">
+        <a href="#problems">Problems</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary" href="#newsletter">Join beta</a>
     </div>
-  </section>
+  </header>
 
-  <div class="container">
-    <section class="features">
-      <div class="feature-card">
-        <div class="feature-icon">&#128176;</div>
-        <h3>Unclear Payments</h3>
-        <p>Track every rupee from inquiry to bank deposit without checking 5 different apps.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">&#128196;</div>
-        <h3>Invoice Chaos</h3>
-        <p>Generate professional, tax-compliant invoices in seconds and send them automatically.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">&#128274;</div>
-        <h3>Lost Contracts</h3>
-        <p>Keep all your brand agreements, terms, and campaign briefs in one secure vault.</p>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Now in beta · Built for creators</div>
+          <h1>Manage brand deals, invoices, and payments in one place.</h1>
+          <p>
+            CreatorOps helps creators track collabs, send invoices, store contracts, and stay on top of payments without juggling WhatsApp chats, spreadsheets, and scattered screenshots.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#newsletter">Join beta</a>
+            <a class="btn btn-secondary" href="#workflow">See how it works</a>
+          </div>
+          <div class="hero-meta">
+            <span>For creators handling paid brand work</span>
+            <span>Invoice + contract workflow</span>
+            <span>Built for real ops chaos</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mock-top">
+            <strong>CreatorOps Dashboard</strong>
+            <span class="tag">Live workflow preview</span>
+          </div>
+          <div class="mock-grid">
+            <div class="deal-card">
+              <div class="deal-head">
+                <div>
+                  <div class="deal-title">Nike UGC Reel</div>
+                  <div class="muted">Reel + 3 stories · Due in 2 days</div>
+                </div>
+                <span class="pill pending">Invoice sent</span>
+              </div>
+              <div class="muted">₹18,000 total · 50% advance pending</div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-head">
+                <div>
+                  <div class="deal-title">Skincare brand campaign</div>
+                  <div class="muted">1 reel · Contract signed</div>
+                </div>
+                <span class="pill paid">Paid</span>
+              </div>
+              <div class="muted">₹12,500 received · Deliverables complete</div>
+            </div>
+
+            <div class="mini-stats">
+              <div class="stat">
+                <div class="muted">Open deals</div>
+                <div class="stat-value">06</div>
+              </div>
+              <div class="stat">
+                <div class="muted">Awaiting payment</div>
+                <div class="stat-value">₹42K</div>
+              </div>
+              <div class="stat">
+                <div class="muted">This month</div>
+                <div class="stat-value">₹1.3L</div>
+              </div>
+            </div>
+
+            <div class="mini-panel">
+              <div class="deal-head">
+                <strong>Documents</strong>
+                <span class="pill review">2 contracts</span>
+              </div>
+              <div class="muted">Invoice templates, brand contracts, and payment proof — all attached to the deal.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  </div>
 
-  <div class="container">
-    <section class="faq">
-      <h2>Your Questions, Answered</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h3>Is it free for creators?</h3>
-          <p>Yes, CreatorOps is completely free for individual creators to manage their business operations.</p>
+    <section id="problems">
+      <div class="container">
+        <div class="section-head">
+          <h2>The business side of being a creator is still messy.</h2>
+          <p>
+            Most creators manage serious brand work through chats, notes, screenshots, and memory. CreatorOps is built to bring structure to that workflow.
+          </p>
         </div>
-        <div class="faq-item">
-          <h3>Do you take a cut from my deals?</h3>
-          <p>No, we do not take any commission from your brand collaborations. We're a tool, not an agency.</p>
+
+        <div class="pain-grid">
+          <div class="card">
+            <div class="icon">💸</div>
+            <h3>Unclear payments</h3>
+            <p>Track every rupee from inquiry to bank deposit without checking five apps and old chats.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📄</div>
+            <h3>Invoices and docs</h3>
+            <p>Create clean invoices, keep contracts in one place, and stop rebuilding files for every deal.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📲</div>
+            <h3>DM chaos</h3>
+            <p>Move brand conversations into a clear workflow so follow-ups, deliverables, and due dates stop slipping.</p>
+          </div>
         </div>
       </div>
     </section>
-  </div>
 
-  <section class="newsletter" id="newsletter">
-    <div class="container">
-      <div class="newsletter-card">
-        <h2>Stay in the loop</h2>
-        <p>Join the waitlist to get early access and creator business tips.</p>
-        <form class="form-group">
-          <input type="email" placeholder="Your email address">
-          <button type="submit">Join Early Access</button>
-        </form>
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2>Everything important sits around the deal.</h2>
+          <p>
+            CreatorOps is not another generic creator tool. It is built around the real lifecycle of a paid collaboration.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="card">
+            <h3>Deal tracking</h3>
+            <p>See where every collab stands: inquiry, negotiating, invoice sent, advance received, content in review, final payment, done.</p>
+          </div>
+          <div class="card">
+            <h3>Invoice workflow</h3>
+            <p>Generate simple creator-friendly invoices and keep them attached to the right deal instead of buried in folders.</p>
+          </div>
+          <div class="card">
+            <h3>Contracts and templates</h3>
+            <p>Store collaboration contracts, attach revisions, and standardize paperwork for repeat brand work.</p>
+          </div>
+          <div class="card">
+            <h3>Payment visibility</h3>
+            <p>Know what has been paid, what is overdue, and what still needs follow-up — with proof attached to the deal.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-logo">Creator<span>Ops</span></div>
-      <p>Built for Creators. Made with love.</p>
-      <p>Questions? Reach out at <a href="mailto:naved@creatorops.in">naved@creatorops.in</a></p>
+    <section id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <h2>How CreatorOps works</h2>
+          <p>
+            Start with the deal, attach the paperwork, and keep the full workflow visible till the money lands.
+          </p>
+        </div>
+
+        <div class="workflow">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Add the deal</h3>
+            <p class="muted">Save the brand name, scope, amount, and deadline the moment a collab starts getting serious.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Send invoice</h3>
+            <p class="muted">Create an invoice or attach an existing one, then mark the advance and final payment stages clearly.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Attach contracts</h3>
+            <p class="muted">Keep agreements, deliverables, usage terms, and important screenshots directly inside the deal flow.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Track till done</h3>
+            <p class="muted">Close the loop only when content is delivered and full payment is received.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter">
+      <div class="container newsletter">
+        <div class="section-head" style="margin-bottom:0;">
+          <h2>Join the beta</h2>
+          <p>
+            CreatorOps is being shaped with early creators who already do paid brand work. Join the beta to get early access and help define what gets built next.
+          </p>
+          <div class="card" style="margin-top:18px;">
+            <h3 style="margin-top:0;">Who this is for</h3>
+            <p>Creators who already handle brand collaborations and want a cleaner, more professional system for money, documents, and workflow.</p>
+          </div>
+        </div>
+
+        <div class="form-wrap">
+          <strong style="font-size:22px; letter-spacing:-0.03em;">Get early access</strong>
+          <p class="muted" style="margin-top:10px;">Leave your details and the biggest ops problem you face with brand deals.</p>
+          <form action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <select name="role" required>
+              <option value="">I am a...</option>
+              <option value="creator">Creator</option>
+              <option value="brand">Brand</option>
+              <option value="agency">Agency</option>
+            </select>
+            <input type="text" name="niche" placeholder="Niche / category (fashion, tech, beauty, etc.)">
+            <textarea name="pain" placeholder="What is the most frustrating part of managing brand deals today?"></textarea>
+            <button class="btn btn-primary" type="submit">Join beta</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Frequently asked questions</h2>
+          <p>
+            Early answers to the most common questions about CreatorOps and what the beta includes.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="card faq-item">
+            <h3>Is CreatorOps live?</h3>
+            <p>CreatorOps is currently in beta. The goal right now is to work closely with early users and shape the workflow around real creator problems.</p>
+          </div>
+          <div class="card faq-item">
+            <h3>Who is it for?</h3>
+            <p>Creators who manage paid collaborations and want a more organized system for deals, invoices, contracts, and payments.</p>
+          </div>
+          <div class="card faq-item">
+            <h3>Do I need GST to use it?</h3>
+            <p>No. Many creators start without GST registration, so early workflows can support simple invoices and basic payment tracking too.</p>
+          </div>
+          <div class="card faq-item">
+            <h3>Can brands use it too?</h3>
+            <p>Yes. Brands and agencies can join the beta interest list, but the initial product direction is creator-first.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 CreatorOps. Built to make creator operations easier.</div>
+      <div>
+        <a href="#newsletter">Join beta</a>
+      </div>
     </div>
   </footer>
 </body>
