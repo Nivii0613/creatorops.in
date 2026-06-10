@@ -372,7 +372,7 @@ function renderAnalytics(){
 }
 function fgInput(id,label,type,placeholder,val){
   var wrap=el('div','fg');
-  wrap.innerHTML='<label>'+label+'</label><input id="'+id+'" type="'+type+'" placeholder="'+placeholder+'" value="'+(val||')+'"/>';
+  wrap.innerHTML='<label>'+label+'</label><input id="'+id+'" type="'+type+'" placeholder="'+placeholder+'" value="'+(val||"")+'/>';
   return wrap;
 }
 function fgSelect(id,label,options,selVal){
